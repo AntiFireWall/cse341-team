@@ -1,0 +1,31 @@
+{
+  "name": "cse341-team",
+  "version": "1.0.0",
+  "description": "Final Team Project",
+  "homepage": "https://github.com/AntiFireWall/cse341-team#readme",
+  "bugs": {
+    "url": "https://github.com/AntiFireWall/cse341-team/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntiFireWall/cse341-team.git"
+  },
+  "license": "ISC",
+  "author": "Daniel Ayvazyan, Tinashe Allan Katenaire, Maxwell Balla Nvani",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Tet Works\"",
+    "start": "nodemon server.js",
+    "autogen": "node swagger.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "mongodb": "^6.18.0",
+    "nodemon": "^3.1.10",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
