@@ -31,3 +31,27 @@ mongodb.initDB((err) => {
 app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
+
+
+/* ***********************
+* Express Error Handler
+* Placed after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  if (err.status) {
+    console.error(`Stack: ${err.stack}`);
+    console.error(`Status: ${err.status}`);
+    console.error(`Message: ${err.message}`);
+    res.status(err.status).send({
+        status: err.status,
+        message: err.message
+  });
+  } else {
+    console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+    console.error(`Stack: ${err.stack}`);
+    res.status(500).send({
+        error: err.message
+  });
+  }
+  
+});
