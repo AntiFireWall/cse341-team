@@ -7,6 +7,6 @@ router.get('/', (req, res) => {
   res.send('Hello All!');
 });
 router.use('/books', require('./booksRoute'));
-
+router.use('/staff', require('./staffRoute'));
 
 module.exports = router;
