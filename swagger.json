@@ -27,6 +27,9 @@
     },
     "/books/": {
       "get": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -37,6 +40,9 @@
     },
     "/books/{isbn}": {
       "get": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "parameters": [
           {
@@ -55,6 +61,9 @@
     },
     "/books/new": {
       "post": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -65,6 +74,9 @@
     },
     "/books/update/{isbn}": {
       "put": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "parameters": [
           {
@@ -83,6 +95,9 @@
     },
     "/books/delete/{isbn}": {
       "delete": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "parameters": [
           {
@@ -101,14 +116,9 @@
     },
     "/staff/": {
       "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
+        "tags": [
+          "Staff"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -119,6 +129,9 @@
     },
     "/staff/{id}": {
       "get": {
+        "tags": [
+          "Staff"
+        ],
         "description": "",
         "parameters": [
           {
@@ -133,8 +146,26 @@
             "description": ""
           }
         }
-      },
+      }
+    },
+    "/staff/new": {
+      "post": {
+        "tags": [
+          "Staff"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/staff/update/{id}": {
       "put": {
+        "tags": [
+          "Staff"
+        ],
         "description": "",
         "parameters": [
           {
@@ -149,8 +180,13 @@
             "description": ""
           }
         }
-      },
+      }
+    },
+    "/staff/delete/{id}": {
       "delete": {
+        "tags": [
+          "Staff"
+        ],
         "description": "",
         "parameters": [
           {

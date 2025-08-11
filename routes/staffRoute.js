@@ -1,29 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const utilities = require('../utilities');
-const staffController = require('../controllers/staffController');
-const staffValidation = require('../utilities/staffValidation'); // Adjust the path as needed
+const express = require("express");
+const router = new express.Router();
+const staffValidator = require("../utilities/staffValidation");
+const utilities = require("../utilities/index");
+const staffController = require("../controllers/staffController");
 
-/**
- * @swagger
- * /staff/new:
- *   post:
- *     summary: Create a new staff member
- *     description: This endpoint creates a new staff member in the library system.
- *     parameters:
- *       - name: body
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/NewStaffMember'
- *     responses:
- *       201:
- *         description: Staff member created successfully
- */
-router.post("/new", 
-  staffValidation.addStaffRules(),  // Use validation rules
-  staffValidation.checkStaffData,   // Use the middleware to check for errors
-  utilities.handleErrors(staffController.createStaff)
-);
+router.get("/", utilities.handleErrors(staffController.getAllStaff));
+
+router.get("/:id", utilities.handleErrors(staffController.getStaffById));
+
+router.post("/new", staffValidator.addStaffRules(), staffValidator.checkStaffData, utilities.handleErrors(staffController.createStaff));
+
+router.put("/update/:id", staffValidator.addStaffRules(), staffValidator.checkStaffData, utilities.handleErrors(staffController.updateStaffById));
+
+router.delete("/delete/:id", utilities.handleErrors(staffController.deleteStaffById));
+
+
 
 module.exports = router;

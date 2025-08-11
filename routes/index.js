@@ -6,7 +6,11 @@ router.get('/', (req, res) => {
   // #swagger.tags=['Test GET']
   res.send('Hello All!');
 });
-router.use('/books', require('./booksRoute'));
-router.use('/staff', require('./staffRoute'));
+router.use(
+  // #swagger.tags=['Books']
+  '/books', require('./booksRoute'));
+router.use(
+  // #swagger.tags=['Staff']
+  '/staff', require('./staffRoute'));
 
 module.exports = router;

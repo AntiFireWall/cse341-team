@@ -4,6 +4,7 @@ const staffController = {};
 
 // Get all staff
 staffController.getAllStaff = async (req, res, next) => {
+    // #swagger.tags=['Staff']
     try {
         const staff = await staffModel.getAllStaff();
         res.status(200).json(staff);
@@ -18,6 +19,7 @@ staffController.getAllStaff = async (req, res, next) => {
 
 // Get staff by ID
 staffController.getStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
     const id = req.params.id;
     try {
         const staff = await staffModel.getStaffById(id);
@@ -40,6 +42,7 @@ staffController.getStaffById = async (req, res, next) => {
 
 // Create staff
 staffController.createStaff = async (req, res, next) => {
+    // #swagger.tags=['Staff']
     const staffData = {
         name: req.body.name,
         email: req.body.email,
@@ -59,7 +62,8 @@ staffController.createStaff = async (req, res, next) => {
 };
 
 // Update staff
-staffController.updateStaff = async (req, res, next) => {
+staffController.updateStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
     const id = req.params.id;
     const staffData = {
         name: req.body.name,
@@ -86,7 +90,8 @@ staffController.updateStaff = async (req, res, next) => {
 };
 
 // Delete staff
-staffController.deleteStaff = async (req, res, next) => {
+staffController.deleteStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
     const id = req.params.id;
     try {
         const deletedStaff = await staffModel.deleteStaffById(id);

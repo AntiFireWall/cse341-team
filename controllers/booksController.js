@@ -5,6 +5,7 @@ const booksController = {};
 
 //function to get all books
 booksController.getAllBooks = async (req, res, next) => {
+    // #swagger.tags=['Books']
     try {
         const books = await booksModel.getAllBooks();
         res.status(200).json(books);
@@ -20,6 +21,7 @@ booksController.getAllBooks = async (req, res, next) => {
 
 //function to get book by ISBN
 booksController.getBookByIsbn = async (req, res, next) => {
+    // #swagger.tags=['Books']
     const isbn = req.params.isbn;
     try {
         const book = await booksModel.getBookByIsbn(isbn);
@@ -43,6 +45,7 @@ booksController.getBookByIsbn = async (req, res, next) => {
 
 //function to create a new book
 booksController.createBook = async (req, res, next) => {
+    // #swagger.tags=['Books']
     const bookData = {
         isbn: req.body.isbn,
         bookTitle: req.body.bookTitle,
@@ -72,6 +75,7 @@ booksController.createBook = async (req, res, next) => {
 
 //function to update a book by ISBN
 booksController.updateBookByIsbn = async (req, res, next) => {
+    // #swagger.tags=['Books']
     const isbn = req.params.isbn;
     const bookData = {
         isbn: req.body.isbn,
@@ -109,6 +113,7 @@ booksController.updateBookByIsbn = async (req, res, next) => {
 
 //function to delete a book by ISBN
 booksController.deleteBookByIsbn = async (req, res, next) => {
+    // #swagger.tags=['Books']
     const isbn = req.params.isbn;
     try {
         const deletedBook = await booksModel.deleteBookByIsbn(isbn);
