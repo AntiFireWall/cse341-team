@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "title": "Library API",
-    "description": "Book API",
+    "description": "Library Management API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse341-team-fclq.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
