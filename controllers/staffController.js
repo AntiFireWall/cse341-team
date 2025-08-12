@@ -1,4 +1,5 @@
 const staffModel = require('../models/staffModel');
+const ObjectId = require('mongodb').ObjectId;
 
 const staffController = {};
 
@@ -20,7 +21,7 @@ staffController.getAllStaff = async (req, res, next) => {
 // Get staff by ID
 staffController.getStaffById = async (req, res, next) => {
     // #swagger.tags=['Staff']
-    const id = req.params.id;
+    const id = ObjectId.createFromHexString(req.params.id.trim());
     try {
         const staff = await staffModel.getStaffById(id);
         if (!staff.length) {
@@ -44,10 +45,11 @@ staffController.getStaffById = async (req, res, next) => {
 staffController.createStaff = async (req, res, next) => {
     // #swagger.tags=['Staff']
     const staffData = {
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         role: req.body.role,
-        password: req.body.password,
+        hireDate: req.body.hireDate,
     };
     try {
         const newStaff = await staffModel.createStaff(staffData);
@@ -64,11 +66,13 @@ staffController.createStaff = async (req, res, next) => {
 // Update staff
 staffController.updateStaffById = async (req, res, next) => {
     // #swagger.tags=['Staff']
-    const id = req.params.id;
+    const id = ObjectId.createFromHexString(req.params.id.trim());
     const staffData = {
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         role: req.body.role,
+        hireDate: req.body.hireDate,
     };
     try {
         const updatedStaff = await staffModel.updateStaffById(id, staffData);
@@ -92,7 +96,7 @@ staffController.updateStaffById = async (req, res, next) => {
 // Delete staff
 staffController.deleteStaffById = async (req, res, next) => {
     // #swagger.tags=['Staff']
-    const id = req.params.id;
+    const id = ObjectId.createFromHexString(req.params.id.trim());
     try {
         const deletedStaff = await staffModel.deleteStaffById(id);
         if (deletedStaff.deletedCount === 0) {

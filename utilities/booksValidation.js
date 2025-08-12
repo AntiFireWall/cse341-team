@@ -54,6 +54,7 @@ validate.addBookRules = () =>{
             .trim()
             .escape()
             .notEmpty()
+            .isLength({min: 20})
             .withMessage("ISBN is required and must be a valid ISBN number")
     ]
 }

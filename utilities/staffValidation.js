@@ -5,23 +5,35 @@ const validate = {};
 // Validation for adding a new staff member
 validate.addStaffRules = () => {
     return [
-        body("name")
+        body("firstName")
             .trim()
             .escape()
             .notEmpty()
             .isLength({ min: 3 })
-            .withMessage("Name is required and must be at least 3 characters long."),
-        body("position")
+            .withMessage("First Name is required and must be at least 3 characters long."),
+        body("lastName")
             .trim()
             .escape()
             .notEmpty()
-            .withMessage("Position is required."),
+            .isLength({ min: 3 })
+            .withMessage("Last Name is required and must be at least 3 characters long."),
+        body("role")
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Role is required."),
         body("email")
             .trim()
             .escape()
             .notEmpty()
             .isEmail()
             .withMessage("Must be a valid email address."),
+        body("hireDate")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isDate()
+            .withMessage("Hire date is required and must be a valid date in the format YYYY-MM-DD (e.g., 2023-10-01)."),
     ];
 };
 

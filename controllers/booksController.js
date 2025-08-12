@@ -24,8 +24,9 @@ booksController.getBookByIsbn = async (req, res, next) => {
     // #swagger.tags=['Books']
     const isbn = req.params.isbn;
     try {
-        const book = await booksModel.getBookByIsbn(isbn);
-        if (!book) {
+        const book = await booksModel.getBookByIsbn(isbn.trim());
+        console.log(book.length);
+        if (!book.length) {
             next({
                 status: 404,
                 message: `Book with ISBN: ${isbn} not found`
@@ -50,11 +51,7 @@ booksController.createBook = async (req, res, next) => {
         isbn: req.body.isbn,
         bookTitle: req.body.bookTitle,
         publishedDate: req.body.publishedDate,
-        //author is an object
-        author: {
-            mainAuthor: req.body.mainAuthor,
-            coAuthors: req.body.coAuthors
-        },
+        mainAuthor: req.body.mainAuthor,
         publisher: req.body.publisher,
         language: req.body.language,
         format: req.body.format,
@@ -81,11 +78,7 @@ booksController.updateBookByIsbn = async (req, res, next) => {
         isbn: req.body.isbn,
         bookTitle: req.body.bookTitle,
         publishedDate: req.body.publishedDate,
-        //author is an object
-        author: {
-            mainAuthor: req.body.mainAuthor,
-            coAuthors: req.body.coAuthors
-        },
+        mainAuthor: req.body.mainAuthor,
         publisher: req.body.publisher,
         language: req.body.language,
         format: req.body.format,
@@ -93,7 +86,7 @@ booksController.updateBookByIsbn = async (req, res, next) => {
         edition: req.body.edition
     };
     try {
-        const updatedBook = await booksModel.updateBookByIsbn(isbn, bookData);
+        const updatedBook = await booksModel.updateBookByIsbn(isbn.trim(), bookData);
         if (updatedBook.modifiedCount === 0) {
             next({
                 status: 404,
@@ -116,7 +109,7 @@ booksController.deleteBookByIsbn = async (req, res, next) => {
     // #swagger.tags=['Books']
     const isbn = req.params.isbn;
     try {
-        const deletedBook = await booksModel.deleteBookByIsbn(isbn);
+        const deletedBook = await booksModel.deleteBookByIsbn(isbn.trim());
         if (deletedBook.deletedCount === 0) {
             next({
                 status: 404,
