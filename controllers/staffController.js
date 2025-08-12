@@ -1,0 +1,119 @@
+const staffModel = require('../models/staffModel');
+const ObjectId = require('mongodb').ObjectId;
+
+const staffController = {};
+
+// Get all staff
+staffController.getAllStaff = async (req, res, next) => {
+    // #swagger.tags=['Staff']
+    try {
+        const staff = await staffModel.getAllStaff();
+        res.status(200).json(staff);
+    } catch (error) {
+        next({
+            status: 500,
+            message: `Error fetching staff: ${error.message}`,
+            stack: error.stack
+        });
+    }
+};
+
+// Get staff by ID
+staffController.getStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
+    const id = ObjectId.createFromHexString(req.params.id.trim());
+    try {
+        const staff = await staffModel.getStaffById(id);
+        if (!staff.length) {
+            next({
+                status: 404,
+                message: `Staff with ID: ${id} not found`
+            });
+        } else {
+            res.status(200).json(staff[0]);
+        }
+    } catch (error) {
+        next({
+            status: 500,
+            message: `Error fetching staff: ${error.message}`,
+            stack: error.stack
+        });
+    }
+};
+
+// Create staff
+staffController.createStaff = async (req, res, next) => {
+    // #swagger.tags=['Staff']
+    const staffData = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        role: req.body.role,
+        hireDate: req.body.hireDate,
+    };
+    try {
+        const newStaff = await staffModel.createStaff(staffData);
+        res.status(201).json({ message: `Staff with ID: ${newStaff.insertedId} created successfully` });
+    } catch (error) {
+        next({
+            status: 500,
+            message: `Error creating staff: ${error.message}`,
+            stack: error.stack
+        });
+    }
+};
+
+// Update staff
+staffController.updateStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
+    const id = ObjectId.createFromHexString(req.params.id.trim());
+    const staffData = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        role: req.body.role,
+        hireDate: req.body.hireDate,
+    };
+    try {
+        const updatedStaff = await staffModel.updateStaffById(id, staffData);
+        if (updatedStaff.modifiedCount === 0) {
+            next({
+                status: 404,
+                message: `Staff with ID: ${id} not found or no changes made`
+            });
+        } else {
+            res.status(200).send({ message: `Staff with ID: ${id} updated successfully` });
+        }
+    } catch (error) {
+        next({
+            status: 500,
+            message: `Error updating staff: ${error.message}`,
+            stack: error.stack
+        });
+    }
+};
+
+// Delete staff
+staffController.deleteStaffById = async (req, res, next) => {
+    // #swagger.tags=['Staff']
+    const id = ObjectId.createFromHexString(req.params.id.trim());
+    try {
+        const deletedStaff = await staffModel.deleteStaffById(id);
+        if (deletedStaff.deletedCount === 0) {
+            next({
+                status: 404,
+                message: `Staff with ID: ${id} not found`
+            });
+        } else {
+            res.status(200).send({ message: `Staff with ID: ${id} deleted successfully` });
+        }
+    } catch (error) {
+        next({
+            status: 500,
+            message: `Error deleting staff: ${error.message}`,
+            stack: error.stack
+        });
+    }
+};
+
+module.exports = staffController;
