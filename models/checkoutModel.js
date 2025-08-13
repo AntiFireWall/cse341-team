@@ -1,4 +1,5 @@
 const mongodb = require("../data/database");
+const bookModel = require ("./booksModel");
 
 const checkoutModel = {};
 
@@ -34,8 +35,11 @@ checkoutModel.createCheckout = async (checkoutData) => {
 
 // Function to update a checkout entry by ID
 checkoutModel.updateCheckoutById = async (id, checkoutData) => {
+    const cleanCheckoutData = Object.fromEntries(
+    Object.entries(checkoutData).filter(([_, v]) => v !== null && v !== undefined && v !== "")
+    );
     try {
-        const updatedCheckout = await mongodb.getDatabase().db().collection("checkout").updateOne({ _id: id }, { $set: checkoutData });
+        const updatedCheckout = await mongodb.getDatabase().db().collection("checkout").updateOne({ _id: id }, { $set: cleanCheckoutData });
         return updatedCheckout;
     } catch (error) {
         return error.message;

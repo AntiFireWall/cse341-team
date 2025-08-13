@@ -3,7 +3,7 @@ const { body, validationResult } = require("express-validator");
 const validate = {};
 
 // Validation for adding a new staff member
-validate.addStaffRules = () => {
+validate.addStaffRulesPOST = () => {
     return [
         body("firstName")
             .trim()
@@ -29,6 +29,46 @@ validate.addStaffRules = () => {
             .isEmail()
             .withMessage("Must be a valid email address."),
         body("hireDate")
+            .trim()
+            .escape()
+            .notEmpty()
+            .isDate()
+            .withMessage("Hire date is required and must be a valid date in the format YYYY-MM-DD (e.g., 2023-10-01)."),
+    ];
+};
+
+// Validation for updating a staff member information
+validate.addStaffRulesPUT = () => {
+    return [
+        body("firstName")
+            .optional()
+            .trim()
+            .escape()
+            .notEmpty()
+            .isLength({ min: 3 })
+            .withMessage("First Name is required and must be at least 3 characters long."),
+        body("lastName")
+            .optional()
+            .trim()
+            .escape()
+            .notEmpty()
+            .isLength({ min: 3 })
+            .withMessage("Last Name is required and must be at least 3 characters long."),
+        body("role")
+            .optional()
+            .trim()
+            .escape()
+            .notEmpty()
+            .withMessage("Role is required."),
+        body("email")
+            .optional()
+            .trim()
+            .escape()
+            .notEmpty()
+            .isEmail()
+            .withMessage("Must be a valid email address."),
+        body("hireDate")
+            .optional()
             .trim()
             .escape()
             .notEmpty()

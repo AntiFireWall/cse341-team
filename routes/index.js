@@ -13,4 +13,8 @@ router.use(
   // #swagger.tags=['Staff']
   '/staff', require('./staffRoute'));
 
+router.use(
+  // #swagger.tags=['Checkout']
+  '/checkout', require('./checkoutRoute'));
+
 module.exports = router;
