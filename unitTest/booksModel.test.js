@@ -19,7 +19,7 @@ afterAll(async () => {
 // Tests
 test('Get specified entry from "Books" collection.', async () => {
     const expectedResult = {
-    "_id": new ObjectId("689b1e162e416e447db55222"),
+    "_id": new ObjectId("689cf804edebe6330d732711"),
     "isbn": "15786248937658215937",
     "bookTitle": "Not Heavy",
     "publishedDate": "2008-02-12",
