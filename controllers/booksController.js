@@ -25,7 +25,6 @@ booksController.getBookByIsbn = async (req, res, next) => {
     const isbn = req.params.isbn;
     try {
         const book = await booksModel.getBookByIsbn(isbn.trim());
-        console.log(book.length);
         if (!book.length) {
             next({
                 status: 404,
@@ -42,6 +41,7 @@ booksController.getBookByIsbn = async (req, res, next) => {
             stack: error.stack
         });
     }
+    console.log(book[0]);
 }
 
 //function to create a new book
@@ -56,8 +56,10 @@ booksController.createBook = async (req, res, next) => {
         language: req.body.language,
         format: req.body.format,
         genre: req.body.genre,
-        edition: req.body.edition
+        edition: req.body.edition,
+        available: true
     }
+    console.log(bookData.available);
     try {
         const newBook = await booksModel.createBook(bookData);
         res.status(201).json({message: `Book with ISBN: ${bookData.isbn} created successfully`, bookId: newBook.insertedId});
@@ -83,7 +85,8 @@ booksController.updateBookByIsbn = async (req, res, next) => {
         language: req.body.language,
         format: req.body.format,
         genre: req.body.genre,
-        edition: req.body.edition
+        edition: req.body.edition,
+        available: req.body.available
     };
     try {
         const updatedBook = await booksModel.updateBookByIsbn(isbn.trim(), bookData);
@@ -93,7 +96,7 @@ booksController.updateBookByIsbn = async (req, res, next) => {
                 message: `Book with ISBN: ${isbn} not found or no changes made`
             });
         } else {
-            res.status(200).send({message: `Book with ISBN: ${bookData.isbn} updated successfully`, modifiedCount: updatedBook.modifiedCount});
+            res.status(200).send({message: `Book with ISBN: ${isbn} updated successfully`, modifiedCount: updatedBook.modifiedCount});
         }
     } catch (error) {
         next({

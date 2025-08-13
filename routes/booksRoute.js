@@ -7,9 +7,9 @@ router.get("/", booksController.getAllBooks);
 
 router.get("/:isbn", booksController.getBookByIsbn);
 
-router.post("/new", booksValidator.addBookRules(), booksValidator.checkBookData, booksController.createBook);
+router.post("/new", booksValidator.addBookRulesPOST(), booksValidator.checkBookData, booksController.createBook);
 
-router.put("/update/:isbn", booksValidator.addBookRules(), booksValidator.checkBookData, booksController.updateBookByIsbn);
+router.put("/update/:isbn", booksValidator.addBookRulesPUT(), booksValidator.checkBookData, booksController.updateBookByIsbn);
 
 router.delete("/delete/:isbn", booksController.deleteBookByIsbn);
 

@@ -5,7 +5,7 @@
     "description": "Library Management API",
     "version": "1.0.0"
   },
-  "host": "cse341-team-fclq.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "https",
@@ -154,6 +154,9 @@
                   "example": "any"
                 },
                 "edition": {
+                  "example": "any"
+                },
+                "available": {
                   "example": "any"
                 }
               }
@@ -310,6 +313,148 @@
       "delete": {
         "tags": [
           "Staff"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/checkout/": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/checkout/{id}": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/checkout/new": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patronFirstName": {
+                  "example": "any"
+                },
+                "patronLastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "checkoutBookISBN": {
+                  "example": "any"
+                },
+                "checkoutDate": {
+                  "example": "any"
+                },
+                "checkInDate": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/checkout/update/{id}": {
+      "put": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                },
+                "hireDate": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/checkout/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Checkout"
         ],
         "description": "",
         "parameters": [
