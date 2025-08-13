@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const staffValidator = require("../utilities/staffValidation");
 const staffController = require("../controllers/staffController");
+const utilities = require("../utilities/index");
 
 router.get("/", staffController.getAllStaff);
 

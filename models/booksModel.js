@@ -25,8 +25,16 @@ booksModel.getBookByIsbn = async (isbn) => {
 //function to create a new book
 booksModel.createBook = async (bookData) => {
     try {
-        const newBook = await mongodb.getDatabase().db().collection("books").insertOne(bookData);
-        return newBook;
+        //function to check if book already exist
+        const newBookIsbn = bookData.isbn;
+        const newBookCheck = await mongodb.getDatabase().db().collection("books").findOne({isbn: newBookIsbn});
+        console.log(newBookCheck);
+        if (newBookCheck.isbn === newBookIsbn) {
+            throw new Error("already exists");
+        } else {
+            const newBook = await mongodb.getDatabase().db().collection("books").insertOne(bookData);
+            return newBook;
+        }
     } catch (error) {
         return error.message;
     }

@@ -60,6 +60,13 @@ booksController.createBook = async (req, res, next) => {
     }
     try {
         const newBook = await booksModel.createBook(bookData);
+        if (newBook === "already exists") {
+            next({
+                status: 400,
+                message: "Book with this ISBN already exists."
+            });
+            return;
+        }
         res.status(201).json({message: `Book with ISBN: ${bookData.isbn} created successfully`, bookId: newBook.insertedId});
     } catch (error) {
         next({
