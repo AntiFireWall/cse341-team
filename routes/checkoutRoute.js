@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const checkoutValidator = require("../utilities/checkoutValidation");
 const checkoutController = require("../controllers/checkoutController");
+const utilities = require("../utilities/index");
 
 router.get("/", checkoutController.getAllCheckout);
 

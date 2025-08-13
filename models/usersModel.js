@@ -22,6 +22,29 @@ usersModel.getUserById = async (id) => {
     }
 };
 
+// Function to create a new user
+usersModel.createUser = async (userData) => {
+    try {
+        const newUser = await mongodb.getDatabase().db().collection("users").insertOne(userData);
+        return newUser;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+// Function to update user by ID
+usersModel.updateUserById = async (id, userData) => {
+    const cleanUserData = Object.fromEntries(
+    Object.entries(userData).filter(([_, v]) => v !== null && v !== undefined && v !== "")
+    );
+    try {
+        const updatedUser = await mongodb.getDatabase().db().collection("users").updateOne({ _id: id }, { $set: cleanUserData });
+        return updatedUser;
+    } catch (error) {
+        return error.message;
+    }
+};
+
 // Function to delete users by ID
 usersModel.deleteUserById = async (id) => {
     try {
