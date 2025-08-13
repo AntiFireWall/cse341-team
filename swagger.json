@@ -360,10 +360,6 @@
         }
       }
     },
-    "/users/": {
-      "get": {
-        "tags": [
-          "User"
     "/checkout/": {
       "get": {
         "tags": [
@@ -377,10 +373,6 @@
         }
       }
     },
-    "/users/{id}": {
-      "get": {
-        "tags": [
-          "User"
     "/checkout/{id}": {
       "get": {
         "tags": [
@@ -402,10 +394,6 @@
         }
       }
     },
-    "/users/delete/{id}": {
-      "delete": {
-        "tags": [
-          "User"
     "/checkout/new": {
       "post": {
         "tags": [
@@ -467,19 +455,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "firstName": {
+                "patronFirstName": {
                   "example": "any"
                 },
-                "lastName": {
+                "patronLastName": {
                   "example": "any"
                 },
                 "email": {
                   "example": "any"
                 },
-                "role": {
+                "checkoutBookISBN": {
                   "example": "any"
                 },
-                "hireDate": {
+                "checkoutDate": {
+                  "example": "any"
+                },
+                "checkInDate": {
                   "example": "any"
                 }
               }
@@ -497,7 +488,61 @@
       "delete": {
         "tags": [
           "Checkout"
-
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
         ],
         "description": "",
         "parameters": [
