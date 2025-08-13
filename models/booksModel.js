@@ -29,7 +29,7 @@ booksModel.createBook = async (bookData) => {
         const newBookIsbn = bookData.isbn;
         const newBookCheck = await mongodb.getDatabase().db().collection("books").findOne({isbn: newBookIsbn});
         console.log(newBookCheck);
-        if (newBookCheck.isbn === newBookIsbn) {
+        if (newBookCheck && newBookCheck.isbn === newBookIsbn) {
             throw new Error("already exists");
         } 
         const newBook = await mongodb.getDatabase().db().collection("books").insertOne(bookData);
