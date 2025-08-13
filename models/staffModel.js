@@ -34,8 +34,11 @@ staffModel.createStaff = async (staffData) => {
 
 // Function to update staff by ID
 staffModel.updateStaffById = async (id, staffData) => {
+    const cleanStaffData = Object.fromEntries(
+    Object.entries(staffData).filter(([_, v]) => v !== null && v !== undefined && v !== "")
+    );
     try {
-        const updatedStaff = await mongodb.getDatabase().db().collection("staff").updateOne({ _id: id }, { $set: staffData });
+        const updatedStaff = await mongodb.getDatabase().db().collection("staff").updateOne({ _id: id }, { $set: cleanStaffData });
         return updatedStaff;
     } catch (error) {
         return error.message;

@@ -42,8 +42,11 @@ booksModel.createBook = async (bookData) => {
 
 //function to update book by ISBN
 booksModel.updateBookByIsbn = async (isbn, bookData) => {
+    const cleanBookData = Object.fromEntries(
+    Object.entries(bookData).filter(([_, v]) => v !== null && v !== undefined && v !== "")
+    );
     try {
-        const updatedBook = await mongodb.getDatabase().db().collection("books").updateOne({ isbn: isbn }, { $set: bookData });
+        const updatedBook = await mongodb.getDatabase().db().collection("books").updateOne({ isbn: isbn }, { $set: cleanBookData });
         return updatedBook;
     } catch (error) {
         return error.message;

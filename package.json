@@ -16,7 +16,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Tet Works\"",
-    "start": "nodemon server.js",
+    "start": "npm run autogen && nodemon server.js",
     "autogen": "node swagger.js"
   },
   "dependencies": {

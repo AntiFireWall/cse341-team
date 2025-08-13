@@ -185,6 +185,9 @@
                 },
                 "edition": {
                   "example": "any"
+                },
+                "available": {
+                  "example": "any"
                 }
               }
             }
@@ -361,6 +364,10 @@
       "get": {
         "tags": [
           "User"
+    "/checkout/": {
+      "get": {
+        "tags": [
+          "Checkout"
         ],
         "description": "",
         "responses": {
@@ -374,6 +381,10 @@
       "get": {
         "tags": [
           "User"
+    "/checkout/{id}": {
+      "get": {
+        "tags": [
+          "Checkout"
         ],
         "description": "",
         "parameters": [
@@ -395,6 +406,98 @@
       "delete": {
         "tags": [
           "User"
+    "/checkout/new": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "patronFirstName": {
+                  "example": "any"
+                },
+                "patronLastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "checkoutBookISBN": {
+                  "example": "any"
+                },
+                "checkoutDate": {
+                  "example": "any"
+                },
+                "checkInDate": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/checkout/update/{id}": {
+      "put": {
+        "tags": [
+          "Checkout"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                },
+                "hireDate": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/checkout/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Checkout"
+
         ],
         "description": "",
         "parameters": [
