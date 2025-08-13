@@ -8,11 +8,11 @@ router.get("/", staffController.getAllStaff);
 
 router.get("/:id", staffController.getStaffById);
 
-router.post("/new", staffValidator.addStaffRulesPOST(), staffValidator.checkStaffData, staffController.createStaff);
+router.post("/new", utilities.isAdmin, staffValidator.addStaffRulesPOST(), staffValidator.checkStaffData, staffController.createStaff);
 
-router.put("/update/:id", staffValidator.addStaffRulesPUT(), staffValidator.checkStaffData, staffController.updateStaffById);
+router.put("/update/:id", utilities.isAdmin, staffValidator.addStaffRulesPUT(), staffValidator.checkStaffData, staffController.updateStaffById);
 
-router.delete("/delete/:id", staffController.deleteStaffById);
+router.delete("/delete/:id", utilities.isAdmin, staffController.deleteStaffById);
 
 
 

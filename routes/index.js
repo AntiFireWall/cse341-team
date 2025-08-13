@@ -4,25 +4,27 @@ const utilities = require("../utilities/index");
 
 router.use('/', require('./swagger'));
 
-router.get('/', (req, res) => {
+router.get('/', utilities.isAuthenticated, (req, res) => {
   // #swagger.tags=['Test GET']
+  if (req.session.user === undefined) {
+    return res.send("Hello, please kindly login with your gmail account");}
   res.send(`Hello ${req.session.user.name}!`);
 });
 router.use(
   // #swagger.tags=['Books']
-  '/books', require('./booksRoute'));
+  '/books', utilities.isAuthenticated, require('./booksRoute'));
 router.use(
   // #swagger.tags=['Staff']
-  '/staff', require('./staffRoute'));
+  '/staff', utilities.isAuthenticated, require('./staffRoute'));
 
 router.use(
   // #swagger.tags=['Checkout']
-  '/checkout', require('./checkoutRoute'));
+  '/checkout', utilities.isAuthenticated, require('./checkoutRoute'));
 
 //route to users
 router.use(
   // #swagger.tags=['User]
-  '/users', require('./usersRoute'));
+  '/users', utilities.isAuthenticated, require('./usersRoute'));
 
   
 // route to auth users using google oauth
