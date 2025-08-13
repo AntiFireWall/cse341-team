@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const booksValidator = require("../utilities/booksValidation");
 const booksController = require("../controllers/booksController");
+const utilities = require("../utilities/index");
 
 router.get("/", booksController.getAllBooks);
 

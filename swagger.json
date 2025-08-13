@@ -25,6 +25,36 @@
         }
       }
     },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/oauth/google/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/books/": {
       "get": {
         "tags": [
@@ -330,6 +360,10 @@
         }
       }
     },
+    "/users/": {
+      "get": {
+        "tags": [
+          "User"
     "/checkout/": {
       "get": {
         "tags": [
@@ -343,6 +377,10 @@
         }
       }
     },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
     "/checkout/{id}": {
       "get": {
         "tags": [
@@ -364,6 +402,10 @@
         }
       }
     },
+    "/users/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
     "/checkout/new": {
       "post": {
         "tags": [
@@ -455,6 +497,7 @@
       "delete": {
         "tags": [
           "Checkout"
+
         ],
         "description": "",
         "parameters": [

@@ -5,8 +5,8 @@ const doc = {
         title: 'Library API',
         description: 'Library Management API'
     },
-    // host: 'cse341-team-fclq.onrender.com',
-    host: 'localhost:3000',
+    host: 'cse341-team-fclq.onrender.com',
+    // host: 'localhost:3000',
     schemes: ['https', 'http']
 };
 
